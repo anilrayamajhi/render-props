@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { ShowPost } from "./Container/showPost";
+import { Resource } from "./Container/Resource";
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <header className="App-header">
         <h3>Render Props</h3>-
         <div>
-          <ShowPost />
+          <Resource URL="https://gilog.herokuapp.com/api/posts" />
         </div>
       </header>
     </div>
