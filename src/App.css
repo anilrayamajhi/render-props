@@ -24,15 +24,17 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.Container {
+  display: flex;
+  margin: -15px;
+  width: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Col-6 {
+  flex: 1;
+  padding: 15px;
+}
+
+.Tile-2 {
+  background-color: #303540;
 }

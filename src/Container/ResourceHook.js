@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export function Resource(props) {
   const [posts, setPosts] = useState([]),
-    { URL } = props;
+    [loading, setLoading] = useState(false),
+    { URL, render } = props;
 
   useEffect(() => {
     let isCurrent = true;
+    setLoading(true);
 
-    const getter = async () => {
+    const getter = async URL => {
       try {
         let response = await fetch(URL, {
           headers: {
@@ -17,19 +19,20 @@ export function Resource(props) {
         });
 
         if (isCurrent) {
-          console.log(response);
-          response.json();
+          let json = await response.json();
+          setPosts(json);
         }
       } catch (e) {
         if (isCurrent) {
-          return { type: "ERROR" };
+          setPosts([]);
         }
       }
     };
 
-    getter();
+    getter(URL);
+    setLoading(false);
     return () => (isCurrent = false);
-  }, [posts]);
+  }, [posts, loading]);
 
-  return posts;
+  return render({ posts, loading });
 }
