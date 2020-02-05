@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 // import { Resource } from "./Container/ResourceHook";
 import { ResourceComponent } from "./Container/ResourceComponent";
+import { ResourceHook } from "./Container/ResourceHook";
 import { PostWidget } from "./Component/PostWidget";
 
 function App() {
@@ -26,9 +27,9 @@ function App() {
           <div className="Col-6 Tile-2">
             <h3>Render Props Hooks</h3>-
             <div>
-              <ResourceComponent
+              <ResourceHook
                 URL="https://gilog.herokuapp.com/api/posts"
-                bottle={data => {
+                render={data => {
                   if (data.loading) return <p>Loading...</p>;
                   return data.payload.map(metadata => (
                     <PostWidget key={metadata._id} {...metadata} />

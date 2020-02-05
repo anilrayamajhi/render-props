@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
-export function Resource(props) {
+export function ResourceHook(props) {
   const [posts, setPosts] = useState([]),
-    [loading, setLoading] = useState(false),
+    [loading, setLoading] = useState(true),
     { URL, render } = props;
 
   useEffect(() => {
@@ -21,6 +21,7 @@ export function Resource(props) {
         if (isCurrent) {
           let json = await response.json();
           setPosts(json);
+          setLoading(false);
         }
       } catch (e) {
         if (isCurrent) {
@@ -30,9 +31,8 @@ export function Resource(props) {
     };
 
     getter(URL);
-    setLoading(false);
     return () => (isCurrent = false);
-  }, [posts, loading]);
+  }, [URL]);
 
-  return render({ posts, loading });
+  return render({ payload: posts, loading });
 }
