@@ -7,7 +7,6 @@ export function ResourceHook(props) {
 
   useEffect(() => {
     let isCurrent = true;
-    setLoading(true);
 
     const getter = async URL => {
       try {
@@ -25,7 +24,6 @@ export function ResourceHook(props) {
         }
       } catch (e) {
         if (isCurrent) {
-          setPosts([]);
         }
       }
     };
